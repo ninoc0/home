@@ -64,7 +64,7 @@ const sunTexture = new THREE.TextureLoader().load('sun.jpg');
 const sunNormalTexture = new THREE.TextureLoader().load('normal.jpg');
 
 const sun = new THREE.Mesh(
-  new THREE.SphereGeometry(6, 32, 32),
+  new THREE.SphereGeometry(8, 32, 32),
   new THREE.MeshStandardMaterial({
     map: sunTexture,
     normalMap: sunTexture,
@@ -90,10 +90,10 @@ function onMouseClick(event) {
 
     // Check if the intersected object is the one we want
     if (intersectedObject.name === "sun") {
-      window.location.href = '/home/basic.html';
+      window.location.href = 'https://ninoc0.github.io/home/basic.html';
     }
     if (intersectedObject.name === "mercury") {
-      window.location.href = '/mercury.html';
+      window.location.href = '/home/mercury.html';
     }
     if (intersectedObject.name === "venus") {
       window.open('https://github.com/ninoc0', '_blank');
@@ -106,7 +106,7 @@ const mercuryTexture = new THREE.TextureLoader().load('mercury.jpg');
 const mercuryNormalTexture = new THREE.TextureLoader().load('mercurynormal.jpg');
 
 const mercury = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
+  new THREE.SphereGeometry(1.5, 32, 32),
   new THREE.MeshStandardMaterial({
     map: mercuryTexture,
     normalMap: mercuryNormalTexture,
@@ -126,7 +126,7 @@ const venusTexture = new THREE.TextureLoader().load('venus.jpg');
 const venusNormalTexture = new THREE.TextureLoader().load('mercurynormal.jpg');
 
 const venus = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
+  new THREE.SphereGeometry(2.5, 32, 32),
   new THREE.MeshStandardMaterial({
     map: venusTexture,
     normalMap: venusNormalTexture,
