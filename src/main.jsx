@@ -2,16 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-//import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 // Setup
 
 const scene = new THREE.Scene();
-
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 });
@@ -31,13 +28,8 @@ pointLight.position.set(5, 5, 5);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add( ambientLight);
 
-// Helpers
+// Stars
 
-// const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper)
-
-// const controls = new OrbitControls(camera, renderer.domElement);
 const geometry = new THREE.SphereGeometry(0.15, 24, 24);
 const material = new THREE.MeshStandardMaterial({ color: 0xffffff});
 
@@ -72,8 +64,94 @@ const sun = new THREE.Mesh(
 );
 sun.name = "sun";
 scene.add(sun);
-sun.position.z = -13;
-sun.position.x = 5;
+sun.position.z = -15;
+sun.position.x = 7;
+
+// Mercury
+
+const mercuryTexture = new THREE.TextureLoader().load('mercury.jpg');
+const mercuryNormalTexture = new THREE.TextureLoader().load('mercurynormal.jpg');
+
+const mercury = new THREE.Mesh(
+  new THREE.SphereGeometry(1.5, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: mercuryTexture,
+    normalMap: mercuryNormalTexture,
+  })
+);
+
+scene.add(mercury);
+
+mercury.position.z = 13;
+mercury.position.setX(-2);
+
+mercury.name = "mercury";
+
+// Venus
+
+const venusTexture = new THREE.TextureLoader().load('venus.jpg');
+const venusNormalTexture = new THREE.TextureLoader().load('mercurynormal.jpg');
+
+const venus = new THREE.Mesh(
+  new THREE.SphereGeometry(2.5, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: venusTexture,
+    normalMap: venusNormalTexture,
+  })
+);
+
+scene.add(venus);
+
+venus.position.z = 21;
+venus.position.setX(-5);
+venus.name = "venus";
+
+// Earth
+
+const earthTexture = new THREE.TextureLoader().load('earth.jpg');
+const earthNormalTexture = new THREE.TextureLoader().load('earthnormal.jpg');
+
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(3, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: earthTexture,
+    normalMap: earthNormalTexture,
+  })
+);
+
+scene.add(earth);
+
+earth.position.z = 33
+earth.position.setX(-5);
+earth.name = "earth";
+
+// Moon
+
+const moonTexture = new THREE.TextureLoader().load('moon.jpg');
+const moonNormalTexture = new THREE.TextureLoader().load('moonnormal.jpg');
+
+const moonPivot = new THREE.Object3D(); //
+earth.add(moonPivot); //
+
+const moon = new THREE.Mesh(
+  new THREE.SphereGeometry(0.3, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: moonTexture,
+    normalMap: moonNormalTexture,
+  })
+);
+
+scene.add(moon);
+
+moonPivot.add(moon);
+
+moon.position.set(4, 0, 0); // Set the moon's initial position relative to the earth
+
+//moon.position.z = 43
+//moon.position.setX(0);
+moon.name = "moon";
+
+// Scroll Animation & Clicking
 
 const raycaster = new THREE.Raycaster();
 const mouse =  new THREE.Vector2();
@@ -100,47 +178,6 @@ function onMouseClick(event) {
     }
   }
 }
-// Mercury
-
-const mercuryTexture = new THREE.TextureLoader().load('mercury.jpg');
-const mercuryNormalTexture = new THREE.TextureLoader().load('mercurynormal.jpg');
-
-const mercury = new THREE.Mesh(
-  new THREE.SphereGeometry(1.5, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: mercuryTexture,
-    normalMap: mercuryNormalTexture,
-  })
-);
-
-scene.add(mercury);
-
-mercury.position.z = 16;
-mercury.position.setX(-4);
-
-mercury.name = "mercury";
-
-// Venus
-
-const venusTexture = new THREE.TextureLoader().load('venus.jpg');
-const venusNormalTexture = new THREE.TextureLoader().load('mercurynormal.jpg');
-
-const venus = new THREE.Mesh(
-  new THREE.SphereGeometry(2.5, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: venusTexture,
-    normalMap: venusNormalTexture,
-  })
-);
-
-scene.add(venus);
-
-venus.position.z = 28;
-venus.position.setX(-4);
-venus.name = "venus";
-
-
-// Scroll Animation
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
@@ -155,6 +192,10 @@ function moveCamera() {
   venus.rotation.y += 0.075;
   venus.rotation.z += 0.05; 
 
+  earth.rotation.x += 0.06;
+  earth.rotation.y += 0.08;
+  earth.rotation.z += 0.05; 
+
   camera.position.z = t * -0.006;
   camera.position.x = t * -0.0004;
   camera.rotation.y = t * -0.0002;
@@ -168,13 +209,25 @@ window.addEventListener('click', onMouseClick, false);
 function animate() {
   requestAnimationFrame(animate);
 
-  //sun.rotation.x += 0.01;
-  //sun.rotation.y += 0.005;
-  //sun.rotation.z += 0.01;
+  sun.rotation.x += 0.01;
+  sun.rotation.y += 0.005;
+  sun.rotation.z += 0.01;
 
-  //moon.rotation.x += 0.005;
+  mercury.rotation.x += 0.01;
+  mercury.rotation.y += 0.005;
+  mercury.rotation.z += 0.01;
 
-  // controls.update();
+  venus.rotation.x += 0.01
+  venus.rotation.y += 0.005;
+  venus.rotation.z += 0.01; 
+
+  earth.rotation.x += 0.01;
+  earth.rotation.y += 0.005;
+  earth.rotation.z += 0.01; 
+
+  moonPivot.rotation.y += 0.01;
+  moonPivot.rotation.z += 0.01;
+  //controls.update();
 
   renderer.render(scene, camera);
 }
