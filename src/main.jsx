@@ -90,7 +90,7 @@ function onMouseClick(event) {
 
     // Check if the intersected object is the one we want
     if (intersectedObject.name === "sun") {
-      window.location.href = '/basic.html';
+      window.location.href = '/home/basic.html';
     }
     if (intersectedObject.name === "mercury") {
       window.location.href = '/mercury.html';
