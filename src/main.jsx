@@ -168,7 +168,8 @@ function onMouseClick(event) {
 
     // Check if the intersected object is the one we want
     if (intersectedObject.name === "sun") {
-      window.location.href = 'https://ninoc0.github.io/home/basic.html';
+      //window.location.href = 'https://ninoc0.github.io/home/basic.html';
+      window.location.href = '/home/basic.html';
     }
     if (intersectedObject.name === "mercury") {
       window.location.href = '/home/mercury.html';
