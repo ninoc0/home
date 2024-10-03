@@ -202,8 +202,8 @@ function moveCamera() {
   camera.rotation.y = t * -0.0002;
 }
 
-document.body.onscroll = moveCamera;
-moveCamera();
+// document.body.onscroll = moveCamera;
+// moveCamera();
 window.addEventListener('click', onMouseClick, false);
 // Animation Loop
 
