@@ -3,24 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Website</title>
+    <title>Nico O'Neill's Website</title>
     <style>
         body {
-            font-family: elevon, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f0f0f0; /* Light gray background */
         }
         header {
-            background-color: #6779b9;
+            background-color: #f1bfcd; /* Tan background */
             color: #fff;
             padding: 20px;
             text-align: center;
+            border-bottom: 2px solid #5e4b8c; /* Light green border */
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
         }
         nav a {
             color: #fff;
             text-decoration: none;
             margin: 0 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #5e4b8c; /* Purple background */
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #d1c6e7; /* Light purple on hover */
         }
         .container {
             max-width: 800px;
@@ -31,71 +43,276 @@
             margin-bottom: 40px;
         }
         .section h2 {
-            color: #333;
-            border-bottom: 2px solid #ccc;
+            color: #5e4b8c; /* Light green color */
+            border-bottom: 2px solid #6a8eae; /* Dark beige border */
             padding-bottom: 5px;
         }
         .project {
-            background-color: #fff;
-            border: 1px solid #ccc;
+            background-color: #f8e0e7; /* Very light yellow */
+            border: 2px dashed #5e4b8c; /* Light yellow border */
             padding: 20px;
             margin-bottom: 20px;
+            border-radius: 10px;
+            transition: transform 0.2s;
         }
-        .project h3 {
-            margin-top: 0;
+        .project:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
         }
-        .project p {
-            margin-bottom: 10px;
+        .academic-history {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .academic-history h1 {
+            text-align: center;
+            color: #d1c6e7; /* Dark beige color */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .academic-history ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .academic-history li {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px dashed #5e4b8c; /* Light yellow border */
+            border-radius: 10px;
+            background-color: #f8e0e7; /* Very light yellow */
+            transition: transform 0.2s;
+        }
+        .academic-history li:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        /* Jump to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #5e4b8c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            transition: background-color 0.3s;
+        }
+        .scroll-top:hover {
+            background-color: #d1c6e7; /* Light purple on hover */
         }
     </style>
 </head>
 <body>
+
     <header>
         <h1>Nico O'Neill</h1>
     </header>
+
     <nav>
+        <a href="#about">About</a>
+        <a href="#research-experience">Research</a>
+        <a href="#conference-presentations">Presentations</a>
+        <a href="#outreach-volunteering">Outreach</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#independent-projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#academic-history">Academic History</a>
+        <a href="#contact">Contact Me</a>
     </nav>
+
     <div class="container">
-        <section id="about" class="section">
-            <h2>About Me</h2>
+        <section id="about" class="section academic-history">
+            <h1>About Me</h1>
             <p>I am a senior <b>physics</b> undergraduate with a minor in <b>computer science</b> studying at Syracuse University. <br>
-                I have a <b>4.0 major GPA</b>(3.4 overall GPA) and do research for our Graviational Wave group. To read more about this research group, our website is linked <a href="https://gravitationalwaves.syracuse.edu/">here.</a> </p>
-            <h3>Course Work</h3>
-            <p>
-                <h4>Physics Related</h4>
-                PHY 302: Math Methods <br>
-                PHY 307: Science & Computers I <br>
-                PHY 312: Relativity & Cosmology <br>
-                PHY 344: Experimental Physics I <br>
-                PHY 360: Vibrations, Waves and Thermo <br>
-                PHY 361: Stat Phys & Quantum Phenomena <br>
-                PHY 524: Electromagnetics I <br>
-                PHY 567: Intro to Quantum Mechanics I <br>
-                PHY 651: Modern Instrumentation <br>
-                <h4>Computer Science Related</h4>
+                I have a <b>4.0 major GPA</b> (3.4 overall GPA) and do research for our Gravitational Wave group. To read more about this research group, our website is linked <a href="https://gravitationalwaves.syracuse.edu/">here.</a>
             </p>
         </section>
-        <section id="projects" class="section"></section>
-            <h2>Research Experience</h2>
-            I have been working as a research assistant for Professor Craig Cahillane since October 2023.<br>
-            Here is an outline of the projects I have worked on as well as the presentations I have given:<br>
-            <div class = "project">
-                <h3>Circuit Design and Modeling</h3>
-                <p>
-                - Updating a python library called PyZero(found <a href="https://docs.ligo.org/sean-leavey/zero/">here</a>) to incorporate "fitting" capabilities. 
-                This allows user to compare their data with the expected data and produce residuals plots. This work can be found <a href="https://docs.ligo.org/sean-leavey/zero/">here</a>
-                </p>
-            </div>
-            <div class="project">
-                <h3>Project 2</h3>
-                <p>Description of project 2...</p>
-            </div>
-            <!-- Add more projects as needed -->
+
+        <section id="research-experience" class="section academic-history">
+            <h1>Research Experience</h1>
+            <ul>
+                <li>
+                    <h3>Circuit Design and Modeling</h3>
+                    <p>- Modeled various op-amp circuits using python to simulate their frequency responses.</p>
+                    <p>- Updating a python library called PyZero (found <a href="https://docs.ligo.org/sean-leavey/zero/">here</a>) to incorporate "fitting" capabilities. This allows users to compare their data with the expected data and produce residuals plots. This work can be found <a href="https://docs.ligo.org/sean-leavey/zero/">here</a>.</p>
+                    <p>- Built simple op-amp circuits to model and compare using PyZero.</p>
+                    <p>- Helped design generic PCB boards to be used for feedback loops, found <a href="https://dcc.ligo.org/LIGO-G2400960">here</a> and <a href="https://dcc.ligo.org/LIGO-T2400160">here</a>.</p>
+                    <p>- Modeled and built(WIP) a preliminary frequency stabilzation loop for a reference cavity.</p>
+                </li>
+                <li>
+                    <h3>Lab Experience</h3>
+                    <p>Helped set up a new lab from day 1, including:</p>
+                    <p>-  Testing the current and temperature controls of the laser.</p>
+                    <p>-  Setting up intial polarization.</p>
+                    <p>-  Creating an inital intensity stabilization loop.</p>
+                    <p>-  Locking a 3 mirror ring cavity.</p>
+                </li>
+                <li>
+                    <h3>Optical Design and Modeling</h3>
+                    <p>- Creating an up-to-date lab layout.</p>
+                    <p>- Creating a planned optical table design for our overall experiment.</p>
+                    <p>- Creating a planned design for our current goals, which is to set up a reference cavity.</p>
+                    <p>- Using fintrace, a library combining both finesse and g-trace, to model our reference cavity and keep an up-to-date table model.</p>
+                    <p>- Using fintrace and python to estimate the required lens to mode match our cavity.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="conference-presentations" class="section academic-history">
+            <h1>Conference Presentations</h1>
+            <ul>
+                <li>
+                    <h3>LVK 2024</h3>
+                    <p>- Attended the Ligo-Virgo-Kagra Meeting in September 2024.</p>
+                    <p>- Presented a poster titled "Progess Towards Ultra-High Power Photoneutralization Cavity," found <a href="https://dcc.ligo.org/LIGO-G2401661">here</a>.</p>
+                </li>
+                <li>
+                    <h3>Undergraduate Research Colliquim</h3>
+                    <p>- Description of the presentation and its significance.</p>
+                </li>
+                <li>
+                    <h3>Undergraduate Research Presentation</h3>
+                    <p>- Description of the presentation and its significance.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="outreach-volunteering" class="section academic-history">
+            <h1>Outreach and Volunteering</h1>
+            <ul>
+                <li>
+                    <h3>Outreach Activity</h3>
+                    <p>- Description of the outreach activity and its impact.</p>
+                </li>
+                <li>
+                    <strong>Project Title:</strong> Resonant Gain Filter Design<br>
+                    <strong>Description:</strong> Designed a Sallen-Key resonant gain filter with a peak at 25 MHz.
+                </li>
+            </ul>
+        </section>
+
+        <section id="teaching" class="section academic-history">
+            <h1>Teaching</h1>
+            <ul>
+                <li>
+                    <h3>Teaching Experience</h3>
+                    <p>- Description of the teaching experience and the subject matter.</p>
+                </li>
+                <li>
+                    <strong>Project Title:</strong> Resonant Gain Filter Design<br>
+                    <strong>Description:</strong> Designed a Sallen-Key resonant gain filter with a peak at 25 MHz.
+                </li>
+            </ul>
+        </section>
+
+        <section id="independent-projects" class="section academic-history">
+            <h1>Independent Projects</h1>
+            <ul>
+                <li>
+                    <h3>Independent Project Title</h3>
+                    <p>- Description of the independent project and its significance.</p>
+                </li>
+                <li>
+                    <strong>Project Title:</strong> Resonant Gain Filter Design<br>
+                    <strong>Description:</strong> Designed a Sallen-Key resonant gain filter with a peak at 25 MHz.
+                </li>
+            </ul>
+        </section>
+
+        <section id="skills" class="section academic-history">
+            <h1>Skills</h1>
+            <ul>
+                <li>
+                    <h3>Skill Title</h3>
+                    <p>- Description of the skill and its application.</p>
+                </li>
+                <li>
+                    <strong>Project Title:</strong> Resonant Gain Filter Design<br>
+                    <strong>Description:</strong> Designed a Sallen-Key resonant gain filter with a peak at 25 MHz.
+                </li>
+            </ul>
+        </section>
+
+        <section id="academic-history" class="section academic-history">
+            <h1>Academic History</h1>
+
+            <h2>🎓 Education</h2>
+            <ul>
+                <li>
+                    <strong>Degree:</strong> Bachelor of Science in Physics<br>
+                    <strong>Institution:</strong> Syracuse University<br>
+                    <strong>Graduation Year:</strong> 2024
+                </li>
+                <li>
+                    <strong>Degree:</strong> Associate of Science in Mathematics<br>
+                    <strong>Institution:</strong> Community College Name<br>
+                    <strong>Graduation Year:</strong> 2022
+                </li>
+            </ul>
+
+            <h2>📚 Relevant Physics Coursework</h2>
+            <ul>
+                <li>Classical Mechanics</li>
+                <li>Electromagnetism</li>
+                <li>Quantum Mechanics</li>
+                <li>Thermodynamics</li>
+                <li>Linear Algebra</li>
+                <li>Differential Equations</li>
+                <li>Advanced Laboratory Techniques</li>
+                <li>Computational Physics</li>
+            </ul>
+    
+            <h2>🔍 Relevant Computer Science Coursework</h2>
+            <ul>
+                <li>Project Title: Laser Cavity Design<br>
+                    <strong>Description:</strong> Developed a 1MW laser cavity for ultra-high power photoneutralization.
+                </li>
+                <li>Project Title: Resonant Gain Filter Design<br>
+                    <strong>Description:</strong> Designed a Sallen-Key resonant gain filter with a peak at 25 MHz.
+                </li>
+            </ul>
         </section>
         <section id="contact" class="section">
             <h2>Contact Me</h2>
             <p>You can reach me at <a href="mailto:neoneill@syr.edu">neoneill@syr.edu</a>.</p>
         </section>
-    </div>
-</body>
+        </div>
+    
+        <div class="footer">
+            &copy; 2024 Nico O'Neill. All rights reserved.
+        </div>
+
+        <!-- Jump to Top Button -->
+        <button class="scroll-top" onclick="scrollToTop()" id="scrollTopBtn">↑ Top</button>
+
+        <script>
+            // Get the button
+            const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollTopBtn.style.display = "block";
+                } else {
+                    scrollTopBtn.style.display = "none";
+                }
+            };
+
+            // When the user clicks on the button, scroll to the top of the document
+            function scrollToTop() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+            }
+        </script>
+    
+    </body>
 </html>

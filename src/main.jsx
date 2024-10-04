@@ -64,7 +64,7 @@ const sun = new THREE.Mesh(
 );
 sun.name = "sun";
 scene.add(sun);
-sun.position.z = -15;
+sun.position.z = -14;
 sun.position.x = 7;
 
 // Mercury
@@ -82,7 +82,7 @@ const mercury = new THREE.Mesh(
 
 scene.add(mercury);
 
-mercury.position.z = 13;
+mercury.position.z = 11.5;
 mercury.position.setX(-2);
 
 mercury.name = "mercury";
@@ -102,8 +102,8 @@ const venus = new THREE.Mesh(
 
 scene.add(venus);
 
-venus.position.z = 21;
-venus.position.setX(-5);
+venus.position.z = 20;
+venus.position.setX(-4);
 venus.name = "venus";
 
 // Earth
@@ -121,7 +121,7 @@ const earth = new THREE.Mesh(
 
 scene.add(earth);
 
-earth.position.z = 33
+earth.position.z = 31
 earth.position.setX(-5);
 earth.name = "earth";
 
@@ -151,6 +151,24 @@ moon.position.set(4, 0, 0); // Set the moon's initial position relative to the e
 //moon.position.setX(0);
 moon.name = "moon";
 
+// Mars
+
+const marsTexture = new THREE.TextureLoader().load('8k_mars.jpg');
+const marsNormalTexture = new THREE.TextureLoader().load('Mars_normalmap_2k.png');
+
+const mars = new THREE.Mesh(
+  new THREE.SphereGeometry(2.5, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: marsTexture,
+    normalMap: marsNormalTexture,
+  })
+);
+
+scene.add(mars);
+
+mars.position.z = 42;
+mars.position.setX(-3);
+mars.name = "mars";
 // Scroll Animation & Clicking
 
 const raycaster = new THREE.Raycaster();
@@ -182,20 +200,20 @@ function onMouseClick(event) {
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
-  mercury.rotation.x += 0.05;
-  mercury.rotation.y += 0.075;
-  mercury.rotation.z += 0.05;
+  //mercury.rotation.x += 0.05;
+  //mercury.rotation.y += 0.075;
+  //mercury.rotation.z += 0.05;
 
-  sun.rotation.y += 0.01;
-  sun.rotation.z += 0.01;
+  //sun.rotation.y += 0.01;
+  //sun.rotation.z += 0.01;
 
-  venus.rotation.x += 0.05;
-  venus.rotation.y += 0.075;
-  venus.rotation.z += 0.05; 
+  //venus.rotation.x += 0.05;
+  //venus.rotation.y += 0.075;
+  //venus.rotation.z += 0.05; 
 
-  earth.rotation.x += 0.06;
-  earth.rotation.y += 0.08;
-  earth.rotation.z += 0.05; 
+  //earth.rotation.x += 0.06;
+  //earth.rotation.y += 0.08;
+  //earth.rotation.z += 0.05; 
 
   camera.position.z = t * -0.006;
   camera.position.x = t * -0.0004;
@@ -206,31 +224,54 @@ document.body.onscroll = moveCamera;
 moveCamera();
 window.addEventListener('click', onMouseClick, false);
 // Animation Loop
+// Rotational Speeds (approximate, in radians per frame)
+const sunRotationSpeed = { x: 0.002, y: 0.005, z: 0.001 };
+const mercuryRotationSpeed = { x: 0.017, y: 0.01, z: 0.005 };
+const venusRotationSpeed = { x: 0.001, y: 0.003, z: 0.002 };
+const earthRotationSpeed = { x: 0.002, y: 0.05, z: 0.01 };
+const marsRotationSpeed = { x: 0.01, y: 0.045, z: 0.005 };
+//const moonOrbitSpeed = 0.002; // Moon's orbit around Earth
+// Moon orbit parameters
+const moonOrbitRadius = 4;  // Distance from the Earth to the Moon
+const moonOrbitSpeed = 0.02; // Speed of orbit
+let moonOrbitAngle = 0; // Initial angle of the moon's orbit
 
+// Animation Loop
 function animate() {
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
-  sun.rotation.x += 0.01;
-  sun.rotation.y += 0.005;
-  sun.rotation.z += 0.01;
+    // Sun rotation on all axes
+    sun.rotation.x += sunRotationSpeed.x;
+    sun.rotation.y += sunRotationSpeed.y;
+    sun.rotation.z += sunRotationSpeed.z;
 
-  mercury.rotation.x += 0.01;
-  mercury.rotation.y += 0.005;
-  mercury.rotation.z += 0.01;
+    // Mercury rotation on all axes
+    mercury.rotation.x += mercuryRotationSpeed.x;
+    mercury.rotation.y += mercuryRotationSpeed.y;
+    mercury.rotation.z += mercuryRotationSpeed.z;
 
-  venus.rotation.x += 0.01
-  venus.rotation.y += 0.005;
-  venus.rotation.z += 0.01; 
+    // Venus rotation on all axes
+    venus.rotation.x += venusRotationSpeed.x;
+    venus.rotation.y += venusRotationSpeed.y;
+    venus.rotation.z += venusRotationSpeed.z;
 
-  earth.rotation.x += 0.01;
-  earth.rotation.y += 0.005;
-  earth.rotation.z += 0.01; 
+    // Earth rotation on all axes
+    earth.rotation.x += earthRotationSpeed.x;
+    earth.rotation.y += earthRotationSpeed.y;
+    earth.rotation.z += earthRotationSpeed.z;
 
-  moonPivot.rotation.y += 0.01;
-  moonPivot.rotation.z += 0.01;
-  //controls.update();
+    // Mars rotation on all axes
+    mars.rotation.x += marsRotationSpeed.x;
+    mars.rotation.y += marsRotationSpeed.y;
+    mars.rotation.z += marsRotationSpeed.z;
 
-  renderer.render(scene, camera);
+    // Moon's circular orbit around the Earth (using the pivot)
+    moonOrbitAngle += moonOrbitSpeed; // Increase the angle for orbit
+    moon.position.x = Math.cos(moonOrbitAngle) * moonOrbitRadius; // X position
+    moon.position.z = Math.sin(moonOrbitAngle) * moonOrbitRadius; // Z position
+
+    // Render the scene
+    renderer.render(scene, camera);
 }
 
 animate();
