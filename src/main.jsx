@@ -190,7 +190,7 @@ function onMouseClick(event) {
       //window.location.href = '/home/basic.html';
     }
     if (intersectedObject.name === "mercury") {
-      window.location.href = '/home/mercury.html';
+      window.location.href = 'https://ninoc0.github.io/home/basic.html#academic-history';
     }
     if (intersectedObject.name === "venus") {
       window.open('https://github.com/ninoc0', '_blank');
