@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nico's Website</title>
 	<script>
-    // Only redirect if user hasn't been redirected before
     if (!localStorage.getItem("visitedIndex")) {
       localStorage.setItem("visitedIndex", "true");
+      window.location.href = "https://ninoc0.github.io/home/basic_website/basic.html";
+    }
+    else {
       window.location.href = "https://ninoc0.github.io/home/basic_website/basic.html";
     }
   </script>
